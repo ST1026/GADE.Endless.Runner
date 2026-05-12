@@ -1,12 +1,17 @@
+using TMPro;
+using TMPro;
 using UnityEngine;
 
 public class Pickups : MonoBehaviour
 {
-    public enum PickupTypes { Coin, Gun, Shield, SpeedBoost }
+    public enum PickupTypes { Gun, Shield, SpeedBoost }
     public PickupTypes types;
     public float rotateSpd = 100f;
 
-    
+    public TextMeshProUGUI coinsTxt;
+    public int coinCount = 0;
+
+
     void Update()
     {
         //make pickups spin
@@ -23,9 +28,6 @@ public class Pickups : MonoBehaviour
             {
                 switch (types)
                 {
-                    case PickupTypes.Coin:
-                        FindAnyObjectByType<ObstacleSpawner>().DeleteCoins();
-                        break;
                     case PickupTypes.Gun:
                         powerUps.UseGun(10f);
                         break;
@@ -41,6 +43,13 @@ public class Pickups : MonoBehaviour
 
            
         }
+
+        if (coinsTxt != null)
+        {
+            //keep track of coins collected
+            coinsTxt.text = "Coins: " + coinCount.ToString();
+        }
+
     }
 
 
