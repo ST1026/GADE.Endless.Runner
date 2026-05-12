@@ -16,7 +16,7 @@ public class Pickups : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            FindAnyObjectByType <ObstacleSpawner>().Coins();
+            FindAnyObjectByType<ObstacleSpawner>().Coins();
             Destroy(gameObject);
         }
     }
