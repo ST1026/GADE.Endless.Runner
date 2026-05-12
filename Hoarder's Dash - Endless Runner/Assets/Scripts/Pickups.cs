@@ -1,10 +1,9 @@
 using TMPro;
-using TMPro;
 using UnityEngine;
 
 public class Pickups : MonoBehaviour
 {
-    public enum PickupTypes { Gun, Shield, SpeedBoost }
+    public enum PickupTypes {Coin, Gun, Shield, SpeedBoost }
     public PickupTypes types;
     public float rotateSpd = 100f;
 
@@ -26,22 +25,12 @@ public class Pickups : MonoBehaviour
 
             if(powerUps != null)
             {
-                switch (types)
-                {
-                    case PickupTypes.Gun:
-                        powerUps.UseGun(10f);
-                        break;
-                    case PickupTypes.Shield:
-                        powerUps.UseShield(12f);
-                        break;
-                    case PickupTypes.SpeedBoost:
-                        powerUps.TriggerBoost(8f, 3f);
-                        break;
-                }
+                if (types == PickupTypes.Gun) powerUps.UseGun(20f);
+                if (types == PickupTypes.Shield) powerUps.UseShield(15f);
+                if (types == PickupTypes.SpeedBoost) powerUps.TriggerBoost(10f, 10f);
             }
             Destroy(gameObject);
 
-           
         }
 
         if (coinsTxt != null)
