@@ -27,7 +27,7 @@ public class Pickups : MonoBehaviour
             {
                 if (types == PickupTypes.Gun) powerUps.UseGun(20f);
                 if (types == PickupTypes.Shield) powerUps.UseShield(15f);
-                if (types == PickupTypes.SpeedBoost) powerUps.TriggerBoost(10f, 10f);
+                if (types == PickupTypes.SpeedBoost) powerUps.TriggerBoost(10f, 2f);
             }
             Destroy(gameObject);
 
