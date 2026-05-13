@@ -33,12 +33,6 @@ public class Pickups : MonoBehaviour
 
         }
 
-        if (coinsTxt != null)
-        {
-            //keep track of coins collected
-            coinsTxt.text = "Coins: " + coinCount.ToString();
-        }
-
     }
 
 
