@@ -5,7 +5,6 @@ public class Pickups : MonoBehaviour
 {
     public enum PickupTypes {Coin, Gun, Shield, SpeedBoost }
     public PickupTypes types;
-    public float rotateSpd = 100f;
 
     public TextMeshProUGUI coinsTxt;
     public int coinCount = 0;
@@ -13,8 +12,8 @@ public class Pickups : MonoBehaviour
 
     void Update()
     {
-        //make pickups spin
-        transform.Rotate(Vector3.up * rotateSpd * Time.deltaTime);
+        //display pickups in level
+        transform.Rotate(Vector3.up * Time.deltaTime);
     }
 
     private void OnTriggerEnter(Collider other)
