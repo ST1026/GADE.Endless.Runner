@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -21,21 +22,59 @@ public class SliderBars : MonoBehaviour
         bossHealthbar.value = currHealth/maxHealth;
     }
 
-    public void UpdateSpeedBar(float currSpeed, float maxSpeed)
+    public void CountdownSpd (float duration)
     {
-        spdBoostbar.value = currSpeed/maxSpeed;
+        StopCoroutine("SpeedCountdown"); //reset if already running coroutine
+        StartCoroutine(SpeedCountdown(duration));
     }
 
-    public void UpdateShieldBar(float currShield, float maxShield)
+    public void CountdownShield (float duration)
     {
-        shieldBar.value = currShield/maxShield;
+        StopCoroutine("ShieldCountdown");
+        StartCoroutine(ShieldCountdown(duration));
     }
 
-    public void UpdateGunBar(float currGun, float maxGun)
+    public void CountdownGun (float duration)
     {
-        gunBar.value = currGun/maxGun;
+        StopCoroutine("GunCountdown");
+        StartCoroutine(GunCountdown(duration));
+
     }
 
 
+    private  IEnumerator SpeedCountdown (float duration)
+    {
+        yield return StartCoroutine(DrainBar(spdBoostbar, duration));
+    }
+
+    private IEnumerator ShieldCountdown (float duration)
+    {
+        yield return StartCoroutine(DrainBar(shieldBar, duration));
+    }
+
+    private IEnumerator GunCountdown (float duration)
+    {
+        yield return StartCoroutine(DrainBar(gunBar, duration));
+    }
+
+
+
+
+    private IEnumerator DrainBar (Slider slider, float duration)
+    {
+        if (slider == null) yield break;
+
+        slider.gameObject.SetActive (true);
+        float timeLeft = duration;
+
+        while (timeLeft > 0)
+        {
+            timeLeft -= Time.deltaTime;
+            slider.value = timeLeft / duration; //scales value from 1 to 0
+            yield return null;
+        }
+
+        slider.gameObject.SetActive(false); //ensure bar is hidden when finished
+    }
     
 }

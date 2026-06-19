@@ -28,6 +28,14 @@ public class Pickups : MonoBehaviour
                 if (types == PickupTypes.Shield) powerUps.UseShield(15f);
                 if (types == PickupTypes.SpeedBoost) powerUps.TriggerBoost(10f, 2f);
             }
+
+            SliderBars sliderBars = FindAnyObjectByType<SliderBars>();
+            if(sliderBars != null)
+            {
+                sliderBars.CountdownGun(20f);
+                sliderBars.CountdownShield(15f);
+                sliderBars.CountdownSpd(10f);
+            }
             Destroy(gameObject);
 
         }
