@@ -24,9 +24,23 @@ public class Pickups : MonoBehaviour
 
             if(powerUps != null)
             {
-                if (types == PickupTypes.Gun) powerUps.UseGun(20f);
-                if (types == PickupTypes.Shield) powerUps.UseShield(15f);
-                if (types == PickupTypes.SpeedBoost) powerUps.TriggerBoost(10f, 2f);
+                if (types == PickupTypes.Gun)
+                {
+                    SFXManager.Instance.PlaySound2D("Pickup2");
+                    powerUps.UseGun(20f);
+                }
+                if (types == PickupTypes.Shield)
+                {
+                    SFXManager.Instance.PlaySound2D("Pickup3");
+                    powerUps.UseShield(15f);
+                }
+
+                if (types == PickupTypes.SpeedBoost)
+                {
+                    SFXManager.Instance.PlaySound2D("Pickup1");
+                    powerUps.TriggerBoost(10f, 2f);
+                }
+
             }
 
             SliderBars sliderBars = FindAnyObjectByType<SliderBars>();
